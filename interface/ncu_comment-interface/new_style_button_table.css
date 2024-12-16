@@ -1,0 +1,169 @@
+/* 搜尋條件橫排樣式 *//* 預設將登入按鈕、會員功能、管理員功能、登出按鈕隱藏 */
+#loginButton,
+.dropdown-button-member,
+.dropdown-button-admin,
+#logoutLink {
+    display: inline-block;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 20px;
+    /* 增加頂部空白 */
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    max-width: 90%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.search-container label {
+    font-weight: bold;
+}
+
+.search-container input,
+.search-container select,
+.search-container button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.search-container button {
+    background-color: #4682b4;
+    /* 藍色按鈕 */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #5a9bd6;
+}
+
+/* 表格樣式 */
+.course-list {
+    display: block;
+    /* 預設隱藏搜尋結果表格 */
+    margin-left: 5%;
+    /* 結果表格與左側對齊 */
+}
+
+.course-list table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.course-list th,
+.course-list td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+}
+
+.course-list th {
+    background-color: #d2e8f2;
+    /* 表格標題淺藍色 */
+    font-weight: bold;
+}
+
+.course-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* 偶數列背景色 */
+}
+
+/* 自定義按鈕樣式 */
+.btn {
+    text-decoration: none;
+    color: white;
+    background-color: #4682b4;
+    /* 藍色按鈕 */
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #5a9bd6;
+}
+
+/* 下拉選單樣式 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    border-radius: 5px;
+    z-index: 1;
+    width: 160px;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.dropdown-content a:hover {
+    background-color: #d2e8f2;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* 會員中心按鈕 */
+.dropdown-button-member {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #4682b4;
+    /* 按鈕背景顏色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.dropdown-button-member:hover {
+    background-color: #5a9bd6;
+}
+
+/* 管理員功能按鈕 */
+.dropdown-button-admin {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #4682b4;
+    /* 按鈕背景顏色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.dropdown-button-admin:hover {
+    background-color: #5a9bd6;
+}

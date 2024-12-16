@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 設定字符編碼為UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 設置視窗比例，讓頁面在移動設備上顯示良好 -->
+    <title>管理員登入</title> <!-- 頁面標題 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* 設置頁面字體為Arial，若無則使用sans-serif */
+            display: flex; /* 使用Flexbox佈局 */
+            justify-content: center; /* 使表單水平居中 */
+            align-items: center; /* 使表單垂直居中 */
+            height: 100vh; /* 設置頁面高度為100%視窗高度 */
+            background-color: #f4f4f9; /* 設置背景顏色為淺灰色 */
+        }
+        form {
+            background-color: #fff; /* 設置表單背景顏色為白色 */
+            padding: 50px; /* 設置表單內部內距 */
+            border-radius: 10px; /* 設置表單圓角邊框 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* 設置表單的陰影效果 */
+        }
+        input {
+            display: block; /* 設置為區塊元素，讓每個輸入框占據一行 */
+            width: 100%; /* 設置輸入框寬度為100% */
+            margin-bottom: 15px; /* 設置輸入框之間的下邊距 */
+            padding: 10px; /* 設置輸入框內部內距 */
+            font-size: 16px; /* 設置字體大小 */
+        }
+        button {
+            padding: 10px 20px; /* 設置按鈕內部內距 */
+            background-color: #333; /* 設置按鈕背景顏色為深灰色 */
+            color: white; /* 設置按鈕文字顏色為白色 */
+            border: none; /* 移除按鈕邊框 */
+            border-radius: 5px; /* 設置按鈕圓角邊框 */
+            cursor: pointer; /* 設置鼠標懸停時顯示為點擊樣式 */
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm" onsubmit="return validateLogin()"> <!-- 設置表單提交事件，調用 validateLogin 函數 -->
+        <h2>管理員登入</h2> <!-- 標題 -->
+        <input type="text" name="username" id="username" placeholder="帳號" value="123" required> <!-- 預設帳號為123 -->
+        <input type="password" name="password" id="password" placeholder="密碼" value="123" required> <!-- 預設密碼為123 -->
+        <button type="submit">登入</button> <!-- 登入按鈕 -->
+    </form>
+
+    <script>
+        function validateLogin() {
+            // 獲取用戶輸入的帳號和密碼
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // 檢查帳號和密碼是否正確
+            if (username === '123' && password === '123') {
+                // 如果正確，重定向到管理員首頁
+                window.location.href = 'admin_homepage.html'; // 替換為您的管理員首頁URL
+                return false; // 防止表單實際提交
+            } else {
+                // 如果不正確，提示錯誤
+                alert('帳號或密碼錯誤！');
+                return false; // 防止表單實際提交
+            }
+        }
+    </script>
+</body>
+</html>

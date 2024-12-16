@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員評論管理</title>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="new_style_button_table.css">
+    <style>
+        /* 基本表格樣式 */
+        #comment-summary-table {
+            width: 95%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        #comment-summary-table th,
+        #comment-summary-table td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            word-wrap: break-word;
+            vertical-align: top;
+        }
+
+        #comment-summary-table th {
+            background-color: #d2e8f2;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap; /* 標題不換行 */
+        }
+
+        /* 交替行背景色 */
+        #comment-summary-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        #comment-summary-table tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        /* 刪除按鈕樣式 */
+        .btn-delete {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* 按鈕文字不換行 */
+        }
+
+        .btn-delete:hover {
+            background-color: #ff4d4d;
+        }
+
+        /* 1. 將「評論ID」、「評分」欄位加寬 */
+        /* 假設評論ID在第1欄、評分在第2欄 */
+        #comment-summary-table th:nth-child(1),
+        #comment-summary-table td:nth-child(1) {
+            min-width: 80px; /* 您可自行調整數值 */
+            white-space: nowrap;
+        }
+
+        #comment-summary-table th:nth-child(2),
+        #comment-summary-table td:nth-child(2) {
+            min-width: 50px; /* 您可自行調整數值 */
+            white-space: nowrap;
+        }
+
+        /* 2. 「評論內容」欄位寬度調為目前約三分之二，根據需求自行調整 */
+        /* 假設評論內容在第3欄，可嘗試給定一個固定寬度或相對寬度 */
+        #comment-summary-table th:nth-child(3),
+        #comment-summary-table td:nth-child(3) {
+            width: 40%; /* 根據需求自行調整，約縮小至原三分之二 */
+        }
+
+        /* 3. 將課程代碼、課程名稱、留言時間、操作欄位加寬 */
+        /* 假設課程代碼在第4欄、課程名稱第5欄、留言時間第6欄、操作第7欄 */
+        #comment-summary-table th:nth-child(4),
+        #comment-summary-table td:nth-child(4) {
+            min-width: 100px;
+            white-space: nowrap;
+        }
+
+        #comment-summary-table th:nth-child(5),
+        #comment-summary-table td:nth-child(5) {
+            min-width: 100px;
+            white-space: nowrap;
+        }
+
+        #comment-summary-table th:nth-child(6),
+        #comment-summary-table td:nth-child(6) {
+            min-width: 120px;
+            white-space: nowrap;
+        }
+
+        #comment-summary-table th:nth-child(7),
+        #comment-summary-table td:nth-child(7) {
+            min-width: 80px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+
+        <div class="navbar">
+            <nav>
+                <button id="loginButton" class="btn">登入</button>
+                <script src="login.js"></script>
+                <div class="dropdown">
+                    <button class="dropdown-button-member">會員中心 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="my_comment_management.html">我的評論</a>
+                        <a href="favorite_course.html">收藏課程</a>
+                        <a href="profile.html">個人資料</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button-admin">管理員功能 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="all_comment_management.html">評論管理</a>
+                        <a href="member-management.html">會員管理</a>
+                        <a href="admin-management.html">管理員管理</a>
+                        <a href="system-settings.html">系統設定</a>
+                    </div>
+                </div>
+                <a href="index.html" id="logoutLink" onclick="logout()">登出</a>
+                <script src="logout.js"></script>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-title" id="section-title">管理評論：</div>
+
+        <!-- 評論表格 -->
+        <table id="comment-summary-table">
+            <thead>
+                <tr>
+                    <th>評論編號</th>
+                    <th>評分</th>
+                    <th>評論內容</th>
+                    <th>課程代碼</th>
+                    <th>課程名稱</th>
+                    <th>留言時間</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 動態填充評論資料 -->
+            </tbody>
+        </table>
+
+        <!-- 引入新的 JavaScript 檔案 -->
+        <script src="buttoncontroller.js"></script>
+        <script src="all_user_comments.js"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NCU課程評論基地. 版權所有。</p>
+    </footer>
+</body>
+
+</html>

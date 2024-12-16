@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>評論管理</title>
+    <style>
+        /* 全局樣式設置 */
+        body {
+            font-family: Arial, sans-serif; /* 設置字體 */
+            margin: 0; /* 移除頁面邊距 */
+            padding: 0; /* 移除頁面內距 */
+            background-color: #f4f4f9; /* 背景顏色 */
+        }
+        /* 頁首樣式 */
+        /* 全局樣式設置 */
+        body {
+            font-family: Arial, sans-serif; /* 設置字體 */
+            margin: 0; /* 移除頁面邊距 */
+            padding: 0; /* 移除頁面內距 */
+            background-color: #f4f4f9; /* 背景顏色 */
+        }
+        /* 頁首樣式 */
+        /* 頁首樣式 */
+        header {
+            background-color: #333; /* 背景顏色：綠色 */
+            color: white; /* 文字顏色：白色 */
+            padding: 30px; /* 內距：20px */
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-between; /* 左右元素間的間隔 */
+            align-items: center; /* 垂直居中 */
+        }
+
+        /* 標題樣式 */
+        header h1 {
+            margin: 0; /* 移除標題的外邊距 */
+        }
+
+        /* 按鈕容器 */
+        .header-buttons {
+            display: flex; /* 使用Flexbox布局 */
+            gap: 10px; /* 按鈕之間的間隔 */
+        }
+
+        /* 按鈕樣式 */
+        button {
+            background-color: #333; /* 按鈕背景色：綠色 */
+            color: white; /* 按鈕文字色：白色 */
+            border: none; /* 無邊框 */
+            padding: 8px 16px; /* 按鈕內距 */
+            border-radius: 4px; /* 圓角邊框 */
+            cursor: pointer; /* 鼠標樣式 */
+        }
+
+        button:hover {
+            background-color: #333; /* 按鈕懸停效果：深綠色 */
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 100%; /* 表格寬度填滿 */
+            border-collapse: collapse; /* 移除邊框間隙 */
+            margin-top: 20px; /* 與頁首的距離 */
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* 單元格邊框 */
+            padding: 8px; /* 單元格內距 */
+            text-align: center; /* 文字置中 */
+        }
+
+        th {
+            background-color: #f2f2f2; /* 表頭背景色 */
+            font-weight: bold; /* 字體加粗 */
+        }
+
+        /* 表格行的懸停效果 */
+        tr:hover {
+            background-color: #f1f1f1; /* 懸停時行的背景色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>
+        <h1>評論管理系統</h1>
+
+        <!-- 頁首右側的按鈕 -->
+        <div class="header-buttons">
+            <button onclick="window.location.href='index.html';">回到首頁</button> <!-- 回到首頁按鈕 -->
+            <button onclick="window.location.href='logout.html';">登出</button> <!-- 登出按鈕 -->
+        </div>
+    </header>
+
+    <!-- 評論資訊的表格 -->
+    <table>
+        <!-- 表格表頭 -->
+        <tr>
+            <th>評論內容</th> <!-- 列標題：評論內容 -->
+            <th>會員名稱</th> <!-- 列標題：會員名稱 -->
+            <th>評論建立時間</th> <!-- 列標題：評論時間 -->
+            <th>操作</th> <!-- 列標題：操作按鈕 -->
+        </tr>
+
+        <!-- 表格內容：評論數據 -->
+        <tr>
+            <td>這是一個評論。</td> <!-- 評論內容 -->
+            <td>會員A</td> <!-- 會員名稱 -->
+            <td>2024-12-01 14:30:45</td> <!-- 評論時間 -->
+            <td>
+                <!-- 操作按鈕 -->
+                <button>刪除</button> <!-- 刪除評論按鈕 -->
+            </td>
+        </tr>
+
+        <!-- 可以在此添加更多評論數據 -->
+        <tr>
+            <td>這是另一條評論。</td>
+            <td>會員B</td>
+            <td>2024-11-30 10:15:22</td>
+            <td>
+                <button>刪除</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

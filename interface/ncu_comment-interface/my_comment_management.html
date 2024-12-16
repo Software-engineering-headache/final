@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCU課程評論基地</title>
+    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="new_style_button_table.css">
+    <style>
+        #my-comments {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comments-table th,
+        .comments-table td {
+            padding: 10px;
+            /* 增加內距 */
+            border: 1px solid #ccc;
+            /* 單元格邊框 */
+            text-align: center;
+            /* 文字置中 */
+        }
+
+        .comments-table th {
+            background-color: #d9eefb;
+            /* 淡藍色背景 */
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            /* 增加內距 */
+            border: 1px solid #ccc;
+            /* 添加邊框顏色 */
+        }
+
+        .comments-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comments-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* 操作按鈕樣式 */
+        .comments-table .btn {
+            background-color: #428bca;
+            /* 藍色背景 */
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comments-table .btn:hover {
+            background-color: #3071a9;
+            /* 深藍色懸停效果 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+
+        <div class="navbar">
+            <nav>
+                <button id="loginButton" class="btn">登入</button>
+                <script src="login.js"></script>
+                <div class="dropdown">
+                    <button class="dropdown-button-member">會員中心 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="my_comment_management.html">我的評論</a>
+                        <a href="favorite_course.html">收藏課程</a>
+                        <a href="profoile.html">個人資料</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button-admin">管理員功能 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="all_comment_management.html">評論管理</a>
+                        <a href="member-management.html">會員管理</a>
+                        <a href="admin-management.html">管理員管理</a>
+                        <a href="system-settings.html">系統設定</a>
+                    </div>
+                </div>
+                <a href="index.html" id="logoutLink" onclick="logout()">登出</a>
+                <script src="logout.js"></script>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-title">我的評論：</div>
+        <section id="my-comments">
+            <table class="comments-table">
+                <thead>
+                    <tr>
+                        <th>課程代碼</th>
+                        <th>課程名稱</th>
+                        <th>我的評論</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody id="comments-body">
+                    <!-- JavaScript 會在此處插入表格資料 -->
+                </tbody>
+            </table>
+        </section>
+        <script src="scriptsv2.js"></script>
+        <script src="buttoncontroller.js"></script>
+        <script src="my_comments.js"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NCU課程評論基地. 版權所有。</p>
+    </footer>
+</body>
+
+</html>

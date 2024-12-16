@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊 - 課程評論系統</title>
+    <link rel="stylesheet" href="new_style.css">
+    <style>
+        /* 表單 */
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* 讓按鈕本身的內容置中 */
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            /* 調整按鈕的內邊距 */
+            text-decoration: none;
+            /* 去掉超鏈接的下劃線 */
+            font-size: 0.75rem;
+            /* 設置字體大小為 0.75rem（較小） */
+        }
+
+        /* 自定義按鈕樣式，與頂部按鈕保持一致 */
+        .btn {
+            text-decoration: none;
+            color: white;
+            background-color: #4682b4;
+            /* 按鈕藍色 */
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>第一次登入請填寫</h2>
+            <form id="register-form">
+                <label for="username">使用者暱稱：</label>
+                <input type="text" id="username" name="username" required>
+
+                <button type="submit" class="btn">確認</button>
+            </form>
+        </div>
+    </main>
+    <script src="register.js"></script>
+</body>
+
+</html>

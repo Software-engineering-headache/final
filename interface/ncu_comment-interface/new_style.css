@@ -1,0 +1,88 @@
+/* 網站整體風格 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* 淺藍色背景 */
+    color: #333;
+}
+
+header {
+    background-color: #d2e8f2; /* 淺藍色 header */
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar nav button,
+.navbar nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #4682b4; /* 藍色按鈕 */
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.navbar nav button:hover,
+.navbar nav a:hover {
+    background-color: #5a9bd6;
+}
+
+/* 登入按鈕樣式 */
+#loginButton {
+    font-size: 1rem; /* 設定與下拉選單按鈕一致的字體大小 */
+    padding: 8px 15px;
+}
+
+/* 首頁圖片跟首頁文字的樣式 */
+.logo-container {
+    display: flex;
+    align-items: center; /* 垂直置中 */
+    gap: 10px; /* 圖片與文字之間的間距 */
+}
+
+.logo-container img {
+    vertical-align: middle; /* 防止圖片偏移 */
+}
+
+.logo-container .logo {
+    margin: 0; /* 移除多餘的外邊距 */
+}
+
+/* 頁腳樣式 */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #d2e8f2;
+    color: #333;
+    margin-top: 20px;
+}
+
+
+/* 區塊標題樣式 */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #333;
+    margin-top: 40px;
+    margin-left: 40px; /* 添加左側空隙 */
+}

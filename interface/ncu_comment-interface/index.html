@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCU課程評論基地</title>
+    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="new_style_button_table.css">
+    <style>
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .hero img {
+            width: 120px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            margin: 0;
+            color: #333;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+
+        <div class="navbar">
+            <nav>
+                <button id="loginButton" class="btn">登入</button>
+                <script src="login.js"></script>
+                <div class="dropdown">
+                    <button class="dropdown-button-member">會員中心 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="my_comment_management.html">我的評論</a>
+                        <a href="favorite_course.html">收藏課程</a>
+                        <a href="profoile.html">個人資料</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button-admin">管理員功能 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="all_comment_management.html">評論管理</a>
+                        <a href="member-management.html">會員管理</a>
+                        <a href="admin-management.html">管理員管理</a>
+                        <a href="system-settings.html">系統設定</a>
+                    </div>
+                </div>
+                <a href="#" id="logoutLink">登出</a>
+                <script src="logout.js"></script>
+                <!-- 移除前端的 JavaScript 登出處理 -->
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-title">搜尋課程評價：</div>
+        <section class="search-container">
+            <label for="department">系所：</label>
+            <select id="department">
+                <option>選擇系所</option>
+                <option>資訊管理學系</option>
+                <option>企業管理學系</option>
+                <option>財務金融學系</option>
+            </select>
+            <label for="instructor">授課老師：</label>
+            <input type="text" id="instructor" placeholder="輸入老師名稱">
+            <label for="keyword">課程關鍵字：</label>
+            <input type="text" id="keyword" placeholder="輸入課程名稱">
+            <button type="submit" class="btn" id="searchButton" onclick="searchCourses()">搜尋</button>
+        </section>
+        <section class="hero" id="hero">
+            <img src="image/comment.png" alt="留言圖示">
+            <div class="hero-text">
+                <h1>輕鬆瀏覽課程評價</h1>
+                <p>立即找到合適的課程並查看其他學生的學習體驗！</p>
+            </div>
+        </section>
+
+        <section id="my-comments" style="display: none;">
+            <h2>我的評論</h2>
+            <table class="comments-table">
+                <thead>
+                    <tr>
+                        <th>課程代碼</th>
+                        <th>評論範例</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12345</td>
+                        <td>這是一則評論的範例。</td>
+                        <td><button class="btn" onclick="deleteComment(this)">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>67890</td>
+                        <td>這是一則評論的範例。</td>
+                        <td><button class="btn" onclick="deleteComment(this)">刪除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="edit-profile" style="display: none;">
+            <h2>修改個人資訊</h2>
+            <form id="profile-form">
+                <label for="username">使用者名稱</label>
+                <input type="text" id="username" placeholder="輸入新的使用者名稱">
+
+                <label for="email">電子郵件</label>
+                <input type="email" id="email" placeholder="輸入新的電子郵件">
+
+                <button type="submit" class="btn">更新資訊</button>
+            </form>
+        </section>
+
+        <script src="scriptsv2.js"></script>
+        <!-- <script src="logout.js"></script> -->
+        <script src="buttoncontroller.js"></script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NCU課程評論基地. 版權所有。</p>
+    </footer>
+    <!-- <script src="buttoncontroller.js"></script>
+    <script src="search.js"></script> -->
+</body>
+
+</html>

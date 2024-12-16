@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增評論 - 課程評論系統</title>
+    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="new_style_button_table.css">
+    <style>
+        /* 表格樣式 */
+        .course-detail table,
+        .course-list table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-detail th,
+        .course-detail td,
+        .course-list th,
+        .course-list td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 10px;
+        }
+
+        .course-detail th,
+        .course-list th {
+            background-color: #d2e8f2;
+            /* 表格標題淺藍色 */
+            font-weight: bold;
+        }
+
+        .course-detail tr:nth-child(even),
+        .course-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+            /* 偶數列背景色 */
+        }
+
+        .course-detail button,
+        .course-list button {
+            background-color: #4682b4;
+            /* 藍色按鈕 */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .course-detail button:hover,
+        .course-list button:hover {
+            background-color: #5a9bd6;
+        }
+
+        /* 新增：評論列表區塊樣式 */
+        .comments {
+            width: 80%; /* 與表格保持一致的寬度 */
+            margin: 20px auto; /* 與表格保持垂直間距，並水平置中 */
+            padding: 5px; /* 內邊距 */
+            background-color: #fff; /* 白色背景 */
+            border-radius: 10px; /* 圓角效果 */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+        }
+
+        .comment-title {
+            text-align: center; /* 文字水平置中 */
+            font-size: 25px; /* 字體大小 */
+            font-weight: bold; /* 字體加粗 */
+            margin-bottom: 30px; /* 與評論內容的間距 */
+        }
+
+        .sort-select {
+            float: right;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 30px;
+            /*margin-top: 0px;*/
+            width: 13%;
+            height: 40px;
+        }
+
+        /* 單條評論樣式 */
+        .comment-item {
+            margin: 0px 15px 20px 15px; /* 每條評論之間的間距 */
+            padding: 10px;
+            background-color: #f8f9fa; /* 淺灰背景 */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-item .rating {
+            color: #f5b301;
+            /* 星星顏色 */
+        }
+
+        .meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* 彈跳視窗 */
+        .modal,
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 248, 255, 0.9); /* 背景半透明 */
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8); /* 調深背景色 */
+            backdrop-filter: blur(5px); /* 背景模糊效果 */
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: dotted underline;
+        }
+
+               /* 彈跳視窗內部樣式 */
+        .modal-content {
+            background: #06304b; /* 使用頁面主背景色 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: left;
+        }        
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+            display: block;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+            width: 95%;
+        }
+        rating
+        #rating .star {
+            font-size: 20px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        #rating .star.selected {
+            color: #f5b301;
+        }
+
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        .alert-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content{
+            position: relative;
+            /* 確保內部的按鈕可以相對於彈跳視窗內容定位 */
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            font-weight: bold;
+            height: 77%;
+        }
+        .alert-content {
+            position: relative;
+            /* 確保內部的按鈕可以相對於彈跳視窗內容定位 */
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .modal-content p, .modal-content label {
+            line-height: 1.6;
+            font-size: 15px; /* 增加字體大小 */
+            text-align: left;
+        }
+
+        textarea {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            /* 移除背景 */
+            border: none;
+            /* 移除邊框 */
+            color: #333;
+            /* 叉叉的顏色 */
+        }
+
+        #rating {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        /* 評分星級樣式 */
+        #rating .star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        #rating .star.selected {
+            color: #f5b301;
+        }
+
+        /* 警告按鈕 */
+        .btn-alert {
+            background-color: #d9534f;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 警告文字樣式 */
+        .warning {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+        <div class="navbar">
+            <nav>
+                <button id="loginButton" class="btn">登入</button>
+                <script src="login.js"></script>
+                <div class="dropdown">
+                    <button class="dropdown-button-member">會員中心 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="my_comment_management.html">我的評論</a>
+                        <a href="favorite_course.html">收藏課程</a>
+                        <a href="profoile.html">個人資料</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button-admin">管理員功能 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="member-management.html">會員管理</a>
+                        <a href="admin-management.html">管理員管理</a>
+                        <a href="system-settings.html">系統設定</a>
+                    </div>
+                </div>
+                <a href="index.html" id="logoutLink" onclick="logout()">登出</a>
+                <script src="logout.js"></script>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="course-detail">
+            <table>
+                <tr>
+                    <th>課程名稱</th>
+                    <td id="course-name" colspan="5">載入中...</td>
+                </tr>
+                <tr>
+                    <th>授課老師</th>
+                    <td id="professor-name" colspan="5">載入中...</td>
+                </tr>
+                <tr>
+                    <th>開課系所</th>
+                    <td id="department-name">載入中...</td>
+                    <th>學分數</th>
+                    <td id="course-info">載入中...</td>
+                    <th>學期</th>
+                    <td id="course-year">載入中...</td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <button class="btn btn-primary" id="review-button" onclick=checkLoginStatus()>我要評論</button>
+                        <button class="btn add-favorite-btn" 
+                            data-course-id="" 
+                            data-course-name="">加入收藏</button>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <!-- 新增：評論清單區塊 -->
+        <section class="comments">
+            <h3 class="comment-title">課程評論
+                <select id="sort-options" class="sort-select">
+                    <option value="default">排序方式</option>
+                    <option value="asc">評分：由小到大</option>
+                    <option value="desc">評分：由大到小</option>
+                </select>
+            </h3>
+            <!-- 單條評論範例 -->
+            <!--div class="comment-item">
+                <p><strong>資訊系網紅</strong> <span class="rating">★★★★★</span></p>
+                <p>超讚的課，老師很認真，可以扎實學習到軟體工程的流程與技巧，推推！</p>
+                <p class="meta">受評教授：許智誠 | 日期：2024-11-03 15:11</p>
+            </div>
+            <div class="comment-item">
+                <p><strong>我想畢業</strong> <span class="rating">★★★★☆</span></p>
+                <p>一學期有幾次 Case 討論作業，還有期末考，需要花時間認真學。</p>
+                <p class="meta">受評教授：許智誠 | 日期：2024-11-01 10:24</p>
+            </div -->
+            <div id="comment-list">
+                <!-- 多條評論範例 -->
+            </div>
+        </section>
+
+        <!-- 評論彈跳視窗 -->
+        <div class="modal" id="review-modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <h3 class="modal-title">發表評論</h3>
+                <p><strong>課程名稱：</strong><span id="modal-course-name"></span></p>
+                <p><strong>授課老師：</strong><span id="modal-professor-name"></span></p>
+                <p><strong>開課系所：</strong><span id="modal-department-name"></span></p>
+                <p><strong>學分數：</strong><span id="modal-course-info"></span></p>
+                <p><strong>學期：</strong><span id="modal-course-year"></span></p>
+        
+                <!-- 評分 -->
+                <label for="rating">評分</label>
+                <div id="rating">
+                    <span class="star" onclick="setRating(1)">★</span>
+                    <span class="star" onclick="setRating(2)">★</span>
+                    <span class="star" onclick="setRating(3)">★</span>
+                    <span class="star" onclick="setRating(4)">★</span>
+                    <span class="star" onclick="setRating(5)">★</span>
+                </div>
+        
+                <!-- 評論內容輸入 -->
+                <label for="comment-text">請輸入評論（上限<span id="char-limit-label">1500</span>字）</label>
+                <textarea id="comment-text" maxlength="1500" placeholder="撰寫您的評論..." required></textarea><br>
+        
+                <!-- 提交按鈕 -->
+                <button type="button" class="btn btn-submit" onclick="submitReview()">發布</button>
+            </div>
+        </div>
+
+        <!-- 超過字數警告視窗 -->
+        <div class="alert-modal" id="alert-modal">
+            <div class="alert-content">
+                <p>字數不可超過 <span id="char-limit-warning">1500</span> 字！</p>
+                <button class="btn btn-alert" onclick="closeAlert()">確定</button>
+            </div>
+        </div>
+    </main>
+    <script src="buttoncontroller.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

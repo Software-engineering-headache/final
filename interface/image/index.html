@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員首頁</title>
+    <style>
+        /* 全局樣式設置 */
+        body {
+            font-family: Arial, sans-serif; /* 設置字體 */
+            margin: 0; /* 移除頁面邊距 */
+            padding: 0; /* 移除頁面內距 */
+            background-color: #f4f4f9; /* 背景顏色 */
+        }
+
+        /* 頁首樣式 */
+        header {
+            background-color: #333; /* 背景為深灰色 */
+            color: #fff; /* 文字為白色 */
+            padding: 10px 20px; /* 內距 */
+            display: flex; /* 使用 Flexbox 佈局 */
+            justify-content: space-between; /* 左右元素間隔 */
+            align-items: center; /* 垂直方向置中 */
+        }
+
+        /* 管理員功能按鈕的容器樣式 */
+        .admin-buttons {
+            display: flex; /* 使用 Flexbox 排列按鈕 */
+            gap: 10px; /* 按鈕間距 */
+        }
+
+        /* 按鈕樣式 */
+        .admin-buttons button {
+            background-color: #444; /* 按鈕背景顏色 */
+            color: white; /* 按鈕文字顏色 */
+            padding: 10px 20px; /* 內距 */
+            border: none; /* 移除邊框 */
+            cursor: pointer; /* 鼠標指針變為點擊樣式 */
+            border-radius: 5px; /* 圓角邊框 */
+        }
+
+        /* 按鈕懸停效果 */
+        .admin-buttons button:hover {
+            background-color: #555; /* 懸停時的背景色 */
+        }
+
+        /* 左側側邊欄樣式 */
+        .sidebar {
+            width: 200px; /* 固定寬度 */
+            height: calc(100vh - 120px); /* 滿高減去頁首高度 */
+            background-color: #333; /* 背景色 */
+            color: white; /* 文字顏色 */
+            padding: 20px; /* 內距 */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+            position: fixed; /* 固定在左側 */
+            top: 120px; /* 從頁首以下開始 */
+        }
+
+        /* 側邊欄中的管理員資訊樣式 */
+        .admin-info {
+            text-align: center; /* 文字置中 */
+            margin-top: 20px; /* 上方距離 */
+        }
+
+        /* 管理員頭像樣式 */
+        .avatar {
+            width: 100px; /* 頭像寬度 */
+            height: 100px; /* 頭像高度 */
+            border-radius: 50%; /* 設為圓形 */
+            margin-bottom: 10px; /* 與名稱間距 */
+        }
+
+        /* 管理員名稱樣式 */
+        .admin-name {
+            font-size: 18px; /* 字體大小 */
+            margin: 10px 0; /* 上下間距 */
+        }
+
+        /* 日期時間樣式 */
+        .date-time {
+            font-size: 14px; /* 字體大小 */
+            margin-top: 5px; /* 與名稱間距 */
+            color: #ccc; /* 顏色設為淺灰 */
+        }
+
+        /* 主內容樣式 */
+        main {
+            margin-left: 250px; /* 左側預留空間避開側邊欄 */
+            padding: 20px; /* 內距 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 左側側邊欄 -->
+    <div class="sidebar">
+        <div class="admin-info">
+            <!-- 管理員頭像 -->
+            <img src="ad_photo.png" alt="Admin Avatar" class="avatar">
+            <!-- 管理員名稱 -->
+            <h3 class="admin-name">管理員名稱</h3>
+            <!-- 日期與時間 -->
+            <p class="date-time" id="currentDateTime">--:--:--</p>
+        </div>
+    </div>
+
+    <!-- 頁首 -->
+    <header>
+        <!-- 頁首標題 -->
+        <h1>NCU<br>管理員首頁</h1>
+        <!-- 管理員功能按鈕 -->
+        <div class="admin-buttons">
+            <!-- 會員管理按鈕 -->
+            <button onclick="location.href='member-management.html'">會員管理</button>
+            <!-- 評論管理按鈕 -->
+            <button onclick="location.href='comment-management.html'">評論管理</button>
+            <!-- 系統設定按鈕 -->
+            <button onclick="location.href='system-settings.html'">系統設定</button>
+            <!-- 登出按鈕 -->
+            <button onclick="location.href='admin-login.html'">登出</button>
+        </div>
+    </header>
+
+    <!-- 主內容區域 -->
+    <main>
+        <p>歡迎來到管理員系統！</p>
+    </main>
+
+    <!-- JavaScript 更新日期與時間 -->
+    <script>
+        // 更新日期與時間的函數
+        function updateDateTime() {
+            const now = new Date(); // 獲取當前時間
+            const dateTimeString = now.toLocaleString('zh-TW', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false, // 使用 24 小時制
+            });
+            // 更新到頁面上
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+
+        // 初始化顯示並每秒更新一次
+        updateDateTime();
+        setInterval(updateDateTime, 1000); // 每 1000 毫秒（1 秒）更新
+    </script>
+</body>
+</html>

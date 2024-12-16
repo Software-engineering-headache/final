@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系統設定</title>
+    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="new_style_button_table.css">
+    <style>
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        td:first-child {
+            text-align: right;
+            width: 30%;
+            font-weight: bold;
+        }
+
+        td:last-child {
+            text-align: left;
+            width: 70%;
+        }
+
+        .button-container {
+            text-align: right;
+            padding-top: 10px;
+        }
+
+        .save-button {
+            text-decoration: none;
+            color: white;
+            background-color: #4682b4;
+            /* 藍色按鈕 */
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+        }
+
+        /* 專屬於系統設定變更紀錄表格的樣式 */
+        .log-table {
+            width: 95%; /* 表格總寬度 */
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        .log-table th, .log-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .log-table th:nth-child(1), .log-table td:nth-child(1) {
+            width: 10%; /* 更新id欄寬度 */
+        }
+
+        .log-table th:nth-child(2), .log-table td:nth-child(2) {
+            width: 15%; /* 字數限制欄寬度 */
+        }
+
+        .log-table th:nth-child(3), .log-table td:nth-child(3) {
+            width: 40%; /* 更新備註欄寬度 */
+        }
+
+        .log-table th:nth-child(4), .log-table td:nth-child(4) {
+            width: 20%; /* 更新時間欄寬度 */
+        }
+
+        .log-table th:nth-child(5), .log-table td:nth-child(5) {
+            width: 15%; /* 管理員帳號欄寬度 */
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 頁首 -->
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/home.png" alt="首頁" width="40" height="40">
+            </a>
+            <a href="index.html" class="logo"
+                style="text-decoration: none; font-size: 1.5rem; font-weight: bold; color: #333;">
+                NCU課程評論基地
+            </a>
+        </div>
+    
+        <div class="navbar">
+            <nav>
+                <button id="loginButton" class="btn">登入</button>
+                <script src="login.js"></script>
+                <div class="dropdown">
+                    <button class="dropdown-button-member">會員中心 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="my_comment_management.html">我的評論</a>
+                        <a href="favorite_course.html">收藏課程</a>
+                        <a href="profoile.html">個人資料</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-button-admin">管理員功能 ▼</button>
+                    <div class="dropdown-content">
+                        <a href="all_comment_management.html">評論管理</a>
+                        <a href="member-management.html">會員管理</a>
+                        <a href="admin-management.html">管理員管理</a>
+                        <a href="system-settings.html">系統設定</a>
+                    </div>
+                </div>
+                <a href="index.html" id="logoutLink" onclick="logout()">登出</a>
+                <script src="logout.js"></script>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="section-title">變更系統設定：</div>
+        <!-- 系統設定表單 -->
+        <form id="system-settings-form">
+            <table>
+                <tr>
+                    <td><label for="comment-limit">評論字數上限：</label></td>
+                    <td>
+                        <input id="comment-limit" type="text" value="1000" required style="width: 80px;">
+                        <label> 字 (上限最多3000字)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="system-log" style="vertical-align: top;">設定更新備註：</label></td>
+                    <td>
+                        <textarea id="system-log" rows="10" cols="50" style="resize: none; width: 100%;"
+                            placeholder="填入日誌紀錄(200字內)..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="button-container">
+                        <!-- 將 type 改為 button，避免表單自動提交 -->
+                        <button type="button" class="save-button" id="save-settings-btn">儲存設定</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+        <div class="section-title">系統設定變更紀錄：</div>
+        <!-- 在此處新增容器來顯示 logs 表格 -->
+        <div id="logsContainer"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NCU課程評論基地. 版權所有。</p>
+    </footer>
+
+    <script src="buttoncontroller.js"></script>
+    <script src="system_settings.js"></script>
+</body>
+
+</html>
