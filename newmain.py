@@ -4,6 +4,7 @@ from NewController.new.SystemController import router as system_router
 from NewController.new.FavoriteController import router as favorite_router
 from NewController.new.CourseController import router as course_router
 from NewController.new.CommentController import router as comment_router
+from controller.write_back_comment import router as write_comment_router
 # 如果有其他的控制器文件，也一并导入，例如：
 # from NewController.new.AnotherController import router as another_router
 
@@ -39,6 +40,7 @@ app.include_router(system_router, tags=["System"])
 app.include_router(favorite_router, tags=["Favorite"])
 app.include_router(course_router, tags=["Course"])
 app.include_router(comment_router, tags=["Comment"])
+app.include_router(write_comment_router, tags=["Comment"])
 # 如果有其他的路由，也在这里注册：
 # app.include_router(another_router, tags=["Another"])
 

@@ -9,9 +9,6 @@ from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 
 router = APIRouter()
-# 創建所有與資料庫模型對應的表格
-# models.Base.metadata.create_all(bind=engine) 會檢查定義的 SQLAlchemy 模型
-# 如果表格不存在，會在資料庫中創建這些表
 models.Base.metadata.create_all(bind=engine)
 
 
